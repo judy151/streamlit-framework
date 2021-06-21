@@ -26,6 +26,9 @@ output_file("ticker.html")
 #load_dotenv(dotenv_path)
 #api_key=os.environ.get("API_KEY")
 
+#Checkbox for Tickers
+ticker_select = st.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
+st.title("Ticker Information for " + ticker_select)
 
 
 st.write('Select items for graphing:')
