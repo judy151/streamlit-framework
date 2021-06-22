@@ -33,7 +33,7 @@ st.title("Ticker Information for " + ticker_select)
 
 
 st.sidebar.write('Select items for graphing:')
-opt_open = st.sidebar.checkbox('Opening Price')
+opt_open = st.sidebar.checkbox('Opening Price', value=True)
 opt_close = st.sidebar.checkbox('Closing Price')
 opt_high = st.sidebar.checkbox('Daily high')
 opt_low = st.sidebar.checkbox('Daily low')
@@ -44,12 +44,12 @@ opt_adjclose = st.sidebar.checkbox('Adjusted close')
 api_key="XOGU5IREVDTWDYVP"
 r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker_select+'&apikey='+api_key)
 data = r.json()
-
 if len(data)==1:
     st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
     st.write("Wait before refreshing")
 
 elif len(data)==2:
+    st.write('here')
     key_name=list(data.keys())[1]    
     metadata=data["Meta Data"]
     
@@ -57,7 +57,6 @@ elif len(data)==2:
     df= pd.DataFrame.from_dict(data[key_name], orient='index')
     df.columns=df.columns.str[3:]  # remove leading numbers
     df.index = pd.to_datetime(df.index)
-    #bokeh.core.validation.silence(1000, True)
     
     
     p = figure(
@@ -66,9 +65,8 @@ elif len(data)==2:
         x_axis_type="datetime",
         tools="pan,reset,save,wheel_zoom")
     
-    #p=figure(x_axis_type="datetime")
     
-   # bokeh.core.validation.silence(1000, True)
+
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -83,4 +81,4 @@ elif len(data)==2:
        
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
-   #bokeh.core.validation.silence(1000, True)
+    bokeh.core.validation.silence(1000, True)
