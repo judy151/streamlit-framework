@@ -11,6 +11,7 @@ import os
 #from dotenv import load_dotenv
 import pandas as pd
 import bokeh
+import boto
 from bokeh.plotting import figure, output_file
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
