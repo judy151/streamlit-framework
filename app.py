@@ -6,20 +6,18 @@ Created on Thu Jun 17 05:17:05 2021
 """
 
 import requests
-#import os
+import os
 #from os.path import join, dirname
 #from dotenv import load_dotenv
 import pandas as pd
 import bokeh
-from bokeh.plotting import figure, output_file, show
+from bokeh.plotting import figure, output_file
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
-from bokeh.core.validation.warnings import MISSING_RENDERERS
+
 
 import streamlit as st
 
-#from boto.s3.connection import S3Connection
-#api_key = S3Connection(os.environ['API_KEY'])
 
 
 output_file("ticker.html")
@@ -27,7 +25,7 @@ output_file("ticker.html")
 
 #dotenv_path = join(dirname(__file__), '.env')
 #load_dotenv(dotenv_path)
-#api_key=os.environ.get("API_KEY")
+api_key=os.environ.get("API_KEY")
 
 #Checkbox for Tickers
 ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
