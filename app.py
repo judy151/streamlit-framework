@@ -21,7 +21,7 @@ ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "
 
 
 form = st.sidebar.form(key='my_form')
-form.text_input(label='Enter a ticker symbol')
+form.text_input('Enter a ticker symbol', 'GOOGL')
 submit= form.form_submit_button(label='Submit')
 
 
