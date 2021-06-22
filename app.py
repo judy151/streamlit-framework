@@ -2,32 +2,19 @@
 """
 Created on Thu Jun 17 05:17:05 2021
 
+Day-10 milestone task 
+
 @author: Judy
 """
-
 import requests
 import os
-#from os.path import join, dirname
-#from dotenv import load_dotenv
 import pandas as pd
-import bokeh
-#import boto
 from bokeh.plotting import figure, output_file
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
 import streamlit as st
 
-#from boto.s3.connection import S3Connection
-#s3 = S3Connection(os.environ['API_KEY'])
-#st.write(s3)
-
 output_file("ticker.html")
-
-
-#dotenv_path = join(dirname(__file__), '.env')
-#load_dotenv(dotenv_path)
-api_key2=os.environ.get("API_KEY")
-st.write(api_key2)
 
 #Checkbox for Tickers
 ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
@@ -41,9 +28,7 @@ opt_high = st.sidebar.checkbox('Daily high')
 opt_low = st.sidebar.checkbox('Daily low')
 opt_adjclose = st.sidebar.checkbox('Adjusted close')
 
-
-
-api_key="XOGU5IREVDTWDYVP"
+api_key=os.environ.get("API_KEY")
 r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker_select+'&apikey='+api_key)
 data = r.json()
 if len(data)==1:
