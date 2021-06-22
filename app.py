@@ -52,7 +52,7 @@ else:
     key_name=list(data.keys())[1]    
     metadata=data["Meta Data"]
     
-    
+    st.write(metadata)
     df= pd.DataFrame.from_dict(data[key_name], orient='index')
     df.columns=df.columns.str[3:]  # remove leading numbers
     df.index = pd.to_datetime(df.index)
