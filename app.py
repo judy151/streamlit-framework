@@ -78,5 +78,5 @@ elif len(data)==2:
        
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
-    bokeh.core.validation.silence(MISSING_RENDERERS, True)
+    bokeh.core.validation.silence(1000, True)
     st.write('here')
