@@ -38,11 +38,12 @@ if submit:
     
     
     if len(data)==1:
-        if data.find("Invalid"):
-            st.write(ticker + " is not a valid entry.")
-        else:
-            st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
-            st.write("Wait before refreshing")
+        st.write(data)
+        #if data.find("Invalid"):
+         #   st.write(ticker + " is not a valid entry.")
+        #else:
+        st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
+        st.write("Wait before refreshing")
     
     elif len(data)==2:
         key_name=list(data.keys())[1]    
