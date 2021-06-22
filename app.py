@@ -39,9 +39,9 @@ if submit:
 
     st.title("Ticker Information for " + ticker)
     
-    st.write(len(data))
     
     if len(data)==1:
+        st.write(data)    
         if ticker.find("Invalid"):
             st.write(ticker + " is not a valid entry.")
         else:
