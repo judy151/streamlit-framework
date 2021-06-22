@@ -14,11 +14,11 @@ import bokeh
 from bokeh.plotting import figure, output_file
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
-
-
 import streamlit as st
 
-
+from boto.s3.connection import S3Connection
+s3 = S3Connection(os.environ['API_KEY'])
+st.write(s3)
 
 output_file("ticker.html")
 
