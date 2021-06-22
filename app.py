@@ -10,6 +10,7 @@ import requests
 #from os.path import join, dirname
 #from dotenv import load_dotenv
 import pandas as pd
+import bokeh
 from bokeh.plotting import figure, output_file, show
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
