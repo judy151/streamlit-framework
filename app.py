@@ -49,7 +49,6 @@ if len(data)==1:
     st.write("Wait before refreshing")
 
 elif len(data)==2:
-    st.write('here')
     key_name=list(data.keys())[1]    
     metadata=data["Meta Data"]
     
@@ -65,8 +64,8 @@ elif len(data)==2:
         x_axis_type="datetime",
         tools="pan,reset,save,wheel_zoom")
     
-    
 
+    p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -81,4 +80,3 @@ elif len(data)==2:
        
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
-    bokeh.core.validation.silence(1000, True)
