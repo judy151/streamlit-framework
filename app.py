@@ -16,9 +16,6 @@ import streamlit as st
 
 output_file("ticker.html")
 
-#To use a selection box
-#ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
-
 form = st.sidebar.form(key='my_form')
 ticker=form.text_input('Enter a ticker symbol (e.g. GOOGL, IBM, AAPL, AMZN)')
 
@@ -37,11 +34,11 @@ if submit:
     r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     data = r.json()    
 
-    st.title("Ticker Information for " + ticker)
+    st.title("Ticker Information for " + ticker.upper())
     
     
     if len(data)==1:
-        st.write(data)    
+        st.write(data.keys())    
         if ticker.find("Invalid"):
             st.write(ticker + " is not a valid entry.")
         else:
