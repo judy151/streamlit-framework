@@ -30,16 +30,16 @@ output_file("ticker.html")
 #api_key=os.environ.get("API_KEY")
 
 #Checkbox for Tickers
-ticker_select = st.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
+ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
 st.title("Ticker Information for " + ticker_select)
 
 
 st.write('Select items for graphing:')
-opt_open = st.checkbox('Opening Price')
-opt_close = st.checkbox('Closing Price')
-opt_high = st.checkbox('Daily high')
-opt_low = st.checkbox('Daily low')
-opt_adjclose = st.checkbox('Adjusted close')
+opt_open = st.sidebar.checkbox('Opening Price')
+opt_close = st.sidebar.checkbox('Closing Price')
+opt_high = st.sidebar.checkbox('Daily high')
+opt_low = st.sidebar.checkbox('Daily low')
+opt_adjclose = st.sidebar.checkbox('Adjusted close')
 
 
 
@@ -80,4 +80,3 @@ elif len(data)==2:
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
     bokeh.core.validation.silence(1000, True)
-    st.write('here')
