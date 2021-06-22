@@ -34,7 +34,7 @@ ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "
 st.title("Ticker Information for " + ticker_select)
 
 
-st.write('Select items for graphing:')
+st.sidebar.write('Select items for graphing:')
 opt_open = st.sidebar.checkbox('Opening Price')
 opt_close = st.sidebar.checkbox('Closing Price')
 opt_high = st.sidebar.checkbox('Daily high')
