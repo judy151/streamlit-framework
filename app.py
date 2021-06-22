@@ -36,11 +36,11 @@ st.title("Ticker Information for " + ticker_select)
 api_key=os.environ.get("API_KEY")
 
 if submit:
-    st.write('{name}')
     r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+'{name}'+'&apikey='+api_key)
-    data = r.json()
-    
-    
+else:
+    r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+'GOOGL'+'&apikey='+api_key)
+
+data = r.json()    
 if len(data)==1:
     st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
     st.write("Wait before refreshing")
