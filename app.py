@@ -63,7 +63,7 @@ elif len(data)==2:
     
     p=figure(x_axis_type="datetime")
     
-    bokeh.core.validation.silence(MISSING_RENDERERS, True)
+
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -78,4 +78,5 @@ elif len(data)==2:
        
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
+    bokeh.core.validation.silence(MISSING_RENDERERS, True)
     st.write('here')
