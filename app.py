@@ -13,6 +13,8 @@ import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.models.formatters import DatetimeTickFormatter
 from bokeh.palettes import Spectral6
+from bokeh.core.validation.warnings import MISSING_RENDERERS
+
 import streamlit as st
 
 #from boto.s3.connection import S3Connection
@@ -61,7 +63,7 @@ elif len(data)==2:
     
     p=figure(x_axis_type="datetime")
     
-
+    bokeh.core.validation.silence(MISSING_RENDERERS, True)
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -73,6 +75,7 @@ elif len(data)==2:
     if opt_adjclose:
         p.line(df.index.values, df["adjusted close"], legend_label="adjusted close", line_color=Spectral6[4])
     
-    st.write(p)   
-    #p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
+       
+    p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
+    st.write('here')
