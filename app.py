@@ -57,12 +57,18 @@ elif len(data)==2:
     df= pd.DataFrame.from_dict(data[key_name], orient='index')
     df.columns=df.columns.str[3:]  # remove leading numbers
     df.index = pd.to_datetime(df.index)
-    bokeh.core.validation.silence(1000, True)
+    #bokeh.core.validation.silence(1000, True)
     
     
-    p=figure(x_axis_type="datetime")
+    p = figure(
+        x_axis_label="Date",
+        y_axis_label="Stock Price",
+        x_axis_type="datetime",
+        tools="pan,reset,save,wheel_zoom")
     
-    bokeh.core.validation.silence(1000, True)
+    #p=figure(x_axis_type="datetime")
+    
+   # bokeh.core.validation.silence(1000, True)
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -77,4 +83,4 @@ elif len(data)==2:
        
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
-    bokeh.core.validation.silence(1000, True)
+   #bokeh.core.validation.silence(1000, True)
