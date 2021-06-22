@@ -37,13 +37,14 @@ if submit:
     r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     data = r.json()    
 
-    st.write(data)
     st.title("Ticker Information for " + ticker)
-
-
+    
     if len(data)==1:
-        st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
-        st.write("Wait before refreshing")
+        if ticker.find("Invalid"):
+            st.write(ticker + " is not a valid entry.")
+        else:
+            st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
+            st.write("Wait before refreshing")
     
     elif len(data)==2:
         key_name=list(data.keys())[1]    
