@@ -22,11 +22,11 @@ output_file("ticker.html")
 form = st.sidebar.form(key='my_form')
 ticker=form.text_input('Enter a ticker symbol (e.g. GOOGL, IBM, AAPL, AMZN)')
 
-opt_open = st.sidebar.checkbox('Opening Price')
-opt_close = st.sidebar.checkbox('Closing Price')
-opt_high = st.sidebar.checkbox('Daily high')
-opt_low = st.sidebar.checkbox('Daily low')
-opt_adjclose = st.sidebar.checkbox('Adjusted close')
+opt_open = form.checkbox('Opening Price')
+opt_close = form.checkbox('Closing Price')
+opt_high = form.checkbox('Daily high')
+opt_low = form.checkbox('Daily low')
+opt_adjclose = form.checkbox('Adjusted close')
 
 submit= form.form_submit_button(label='Submit')
 
@@ -37,9 +37,10 @@ if submit:
     r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     data = r.json()    
 
+    st.write(data)
     st.title("Ticker Information for " + ticker)
 
-    st.write ('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
+
     if len(data)==1:
         st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
         st.write("Wait before refreshing")
