@@ -32,8 +32,8 @@ st.title("Ticker Information for " + ticker_select)
 
 
 st.write('Select items for graphing:')
-opt_open = st.checkbox('Closing Price')
-opt_close = st.checkbox('Opening Price')
+opt_open = st.checkbox('Opening Price')
+opt_close = st.checkbox('Closing Price')
 opt_high = st.checkbox('Daily high')
 opt_low = st.checkbox('Daily low')
 opt_adjclose = st.checkbox('Adjusted close')
@@ -61,7 +61,7 @@ elif len(data)==2:
     
     p=figure(x_axis_type="datetime")
     
-    st.write(opt_open)
+
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -73,6 +73,6 @@ elif len(data)==2:
     if opt_adjclose:
         p.line(df.index.values, df["adjusted close"], legend_label="adjusted close", line_color=Spectral6[4])
     
-    
+    st.write(p)   
     p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
