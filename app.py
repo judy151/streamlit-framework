@@ -59,12 +59,12 @@ elif len(data)==2:
     df= pd.DataFrame.from_dict(data[key_name], orient='index')
     df.columns=df.columns.str[3:]  # remove leading numbers
     df.index = pd.to_datetime(df.index)
-    
+    bokeh.core.validation.silence(1000, True)
     
     
     p=figure(x_axis_type="datetime")
     
-
+    bokeh.core.validation.silence(1000, True)
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
