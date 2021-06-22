@@ -64,8 +64,6 @@ elif len(data)==2:
         x_axis_type="datetime",
         tools="pan,reset,save,wheel_zoom")
     
-    st.write(df.index.values)
-    st.write(df["open"])
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
@@ -77,6 +75,6 @@ elif len(data)==2:
     if opt_adjclose:
         p.line(df.index.values, df["adjusted close"], legend_label="adjusted close", line_color=Spectral6[4])
     
-       
-    p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
+    p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
+    
