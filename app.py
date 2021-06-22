@@ -48,7 +48,7 @@ if len(data)==1:
     st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
     st.write("Wait before refreshing")
 
-else:
+elif len(data)==2:
     key_name=list(data.keys())[1]    
     metadata=data["Meta Data"]
     
@@ -57,11 +57,11 @@ else:
     df.columns=df.columns.str[3:]  # remove leading numbers
     df.index = pd.to_datetime(df.index)
     
-    st.write(df.index)
+    
     
     p=figure(x_axis_type="datetime")
     
-    
+    st.write(opt_open)
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
