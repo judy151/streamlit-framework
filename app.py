@@ -16,8 +16,8 @@ import streamlit as st
 
 output_file("ticker.html")
 
-#Checkbox for Tickers
-ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
+#To use a selection box
+#ticker_select = st.sidebar.selectbox("Select Ticker", ["IBM", "GOOGL", "AAPL", "AMZN"])
 
 form = st.sidebar.form(key='my_form')
 ticker=form.text_input('Enter a ticker symbol (e.g. GOOGL, IBM, AAPL, AMZN)')
@@ -33,12 +33,12 @@ opt_adjclose = st.sidebar.checkbox('Adjusted close')
 api_key=os.environ.get("API_KEY")
 
 if submit:
-    r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+'{ticker}'+'&apikey='+api_key)
+    r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     data = r.json()    
 
-    st.title("Ticker Information for " + '{ticker}')
+    st.title("Ticker Information for " + ticker)
 
-    st.write ('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+'{ticker}'+'&apikey='+api_key)
+    st.write ('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     if len(data)==1:
         st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
         st.write("Wait before refreshing")
@@ -57,12 +57,16 @@ if submit:
             x_axis_type="datetime",
             tools="pan,reset,save,wheel_zoom")
         
+        cnt=0
         if opt_open:
             p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
+            cnt+=1
         if opt_close:
             p.line(df.index.values, df["close"], legend_label="close", line_color=Spectral6[1])
+            cnt+=1
         if opt_high:
             p.line(df.index.values, df["high"], legend_label="high", line_color=Spectral6[2])
+            cnt+=1
         if opt_low:
             p.line(df.index.values, df["low"], legend_label="low", line_color=Spectral6[3])
         if opt_adjclose:
