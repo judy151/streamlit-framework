@@ -64,8 +64,8 @@ elif len(data)==2:
         x_axis_type="datetime",
         tools="pan,reset,save,wheel_zoom")
     
-
-    p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
+    st.write(df.index.values)
+    st.write(df["open"])
     if opt_open:
         p.line(df.index.values, df["open"], legend_label="open", line_color=Spectral6[0])
     if opt_close:
