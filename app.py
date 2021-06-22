@@ -23,7 +23,7 @@ form = st.sidebar.form(key='my_form')
 form.text_input('Enter a ticker symbol (e.g. GOOGL, IBM, AAPL, AMZN)')
 submit= form.form_submit_button(label='Submit')
 
-opt_open = st.sidebar.checkbox('Opening Price', value=True)
+opt_open = st.sidebar.checkbox('Opening Price')
 opt_close = st.sidebar.checkbox('Closing Price')
 opt_high = st.sidebar.checkbox('Daily high')
 opt_low = st.sidebar.checkbox('Daily low')
@@ -38,7 +38,7 @@ if submit:
 
     st.title("Ticker Information for " + '{name}')
 
-    st.write (data)
+    st.write ('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+'{name}'+'&apikey='+api_key)
     if len(data)==1:
         st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
         st.write("Wait before refreshing")
