@@ -21,13 +21,14 @@ output_file("ticker.html")
 
 form = st.sidebar.form(key='my_form')
 ticker=form.text_input('Enter a ticker symbol (e.g. GOOGL, IBM, AAPL, AMZN)')
-submit= form.form_submit_button(label='Submit')
 
 opt_open = st.sidebar.checkbox('Opening Price')
 opt_close = st.sidebar.checkbox('Closing Price')
 opt_high = st.sidebar.checkbox('Daily high')
 opt_low = st.sidebar.checkbox('Daily low')
 opt_adjclose = st.sidebar.checkbox('Adjusted close')
+
+submit= form.form_submit_button(label='Submit')
 
 
 api_key=os.environ.get("API_KEY")
@@ -69,9 +70,14 @@ if submit:
             cnt+=1
         if opt_low:
             p.line(df.index.values, df["low"], legend_label="low", line_color=Spectral6[3])
+            cnt+=1
         if opt_adjclose:
             p.line(df.index.values, df["adjusted close"], legend_label="adjusted close", line_color=Spectral6[4])
+            cnt+=1
         
-        st.bokeh_chart(p)
-        p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
+        if cnt==0:
+            st.write("Select at least one checkbox to graph")
+        else:
+            st.bokeh_chart(p)
+            p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     
