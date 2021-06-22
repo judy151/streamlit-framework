@@ -74,5 +74,5 @@ elif len(data)==2:
         p.line(df.index.values, df["adjusted close"], legend_label="adjusted close", line_color=Spectral6[4])
     
     st.write(p)   
-    p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
+    #p.xaxis.formatter=DatetimeTickFormatter(days=["%b %d, %Y"])
     st.bokeh_chart(p)
