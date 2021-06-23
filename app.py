@@ -38,7 +38,8 @@ if submit:
     
     
     if len(data)==1:
-        st.write(data)
+        key=data.keys()
+        st.write(data[key])
         #if data.find("Invalid"):
          #   st.write(ticker + " is not a valid entry.")
         #else:
