@@ -29,7 +29,6 @@ submit= form.form_submit_button(label='Submit')
 
 
 api_key=os.environ.get("API_KEY")
-
 if submit:
     r = requests.get('https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&outputsize=compact&symbol='+ticker+'&apikey='+api_key)
     data = r.json()    
@@ -39,13 +38,11 @@ if submit:
     
     if len(data)==1:
         key=data.keys()
-        st.write(key) 
-        st.write(data.get(key))
-        #if data[key].find("Invalid"):
-         #   st.write(ticker + " is not a valid entry.")
-        #else:
-        st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
-        st.write("Wait before refreshing")
+        if 'Error Message' in key:
+            st.write(ticker + " is not a valid entry.")
+        else:
+            st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
+            st.write("Wait before refreshing")
     
     elif len(data)==2:
         key_name=list(data.keys())[1]    
