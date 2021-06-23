@@ -38,9 +38,9 @@ if submit:
     
     
     if len(data)==1:
-        key=data.keys()
-        st.write(data[key])
-        #if data.find("Invalid"):
+        #key=data.keys()
+        st.write(type(data))
+        #if data[key].find("Invalid"):
          #   st.write(ticker + " is not a valid entry.")
         #else:
         st.write("Thank you for using Alpha Vantage! Our standard API call frequency is 5 calls per minute and 500 calls per day. Please visit https://www.alphavantage.co/premium/ if you would like to target a higher API call frequency.")
